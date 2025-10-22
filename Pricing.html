@@ -1,249 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Service Pricing - AutoMech</title>
-  <style>
-    :root {
-      --bg: #111;
-      --nav: #080808;
-      --accent: #f76b1c;
-      --white: #fff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Service Pricing - AutoMech</title>
 
-    body {
-      margin: 0;
-      font-family: "Poppins", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--white);
-      min-height: 100vh;
-    }
+<style>
+  :root {
+    --bg: #111;
+    --nav: #080808;
+    --accent: #f76b1c;
+    --white: #fff;
+  }
 
-    /* ===== Navbar ===== */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(8, 8, 8, 0.9);
-      padding: 0.6rem 1.2rem;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: bold;
-      color: var(--accent);
-      font-size: 1.4rem;
+  body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    min-height: 100vh;
+  }
+
+  /* ===== Navbar ===== */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--nav);
+    padding: 0.6rem 1.2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.4rem;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 1.9rem;
+    color: var(--white);
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 1.3rem;
+    list-style: none;
+  }
+
+  .nav-list a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+  }
+
+  .nav-list a:hover {
+    color: var(--accent);
+  }
+
+  .book-btn a {
+    background: var(--accent);
+    color: var(--white);
+    border-radius: 6px;
+    border: 2px solid var(--accent);
+    font-weight: 700;
+    padding: 0.35rem 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .book-btn a:hover {
+    background: var(--white);
+    color: var(--accent);
+  }
+
+  /* ===== Pricing Section ===== */
+  .pricing-section {
+    max-width: 600px;
+    margin: 7rem auto 3rem;
+    background: #222;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+  }
+
+  .pricing-section h2 {
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+    color: #ffd700;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .brand-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+
+  .brand-table th, .brand-table td {
+    border: 1px solid #444;
+    padding: 0.7rem 0.4rem;
+    text-align: left;
+  }
+
+  .brand-table th {
+    background: #333;
+    color: var(--accent);
+  }
+
+  .brand-table td {
+    background: #222;
+  }
+
+  .book-now-btn {
+    display: block;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem auto 0;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .book-now-btn:hover {
+    background: #fff;
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .footer {
+    background: var(--nav);
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 0 1rem 0;
+    margin-top: 3rem;
+  }
+
+  .footer-content p {
+    margin: 0.3rem 0;
+    font-size: 1rem;
+  }
+
+  /* ===== Responsive Navbar ===== */
+  @media (max-width: 800px) {
+    .menu-toggle {
+      display: block;
     }
 
     .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 1.3rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-list li a {
-      text-decoration: none;
-      color: #f9f9f9;
-      font-weight: 500;
-      transition: color 0.2s;
-      padding: 0.4rem 1rem;
-      display: flex;
+      position: absolute;
+      top: 64px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 78%;
+      max-width: 360px;
+      background: var(--nav);
+      border-radius: 10px;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+      display: none;
+      padding: 12px 0;
     }
 
-    .nav-list li a:hover {
-      color: var(--accent);
+    .nav-list.show {
+      display: flex;
+    }
+
+    .nav-list li {
+      width: 100%;
+      margin: 6px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-list a {
+      display: inline-block;
+      width: auto;
+      text-align: center;
+      font-size: 1rem;
+      border-radius: 6px;
     }
 
     .book-btn a {
-      background: var(--accent);
-      color: var(--white) !important;
-      border-radius: 0.4rem;
-      border: 2px solid var(--accent);
-      font-weight: bold;
-      padding: 0.4rem 1rem;
-      transition: background 0.2s, color 0.2s;
+      min-width: 110px;
+      padding: 6px 10px;
+      font-size: 0.88rem;
+      border-radius: 6px;
+      text-align: center;
     }
 
-    .book-btn a:hover {
-      background: #fff;
-      color: var(--accent) !important;
-    }
-
-    /* ===== Menu Toggle (Mobile) ===== */
-    .menu-toggle {
-      display: none;
-      font-size: 1.9rem;
-      color: var(--white);
-      cursor: pointer;
-      background: none;
-      border: none;
-      outline: none;
-      box-shadow: none;
-      padding: 0;
-      margin: 0;
-      appearance: none;
-    }
-
-    .menu-toggle:focus,
-    .menu-toggle:active {
-      outline: none;
-      background: none;
-      box-shadow: none;
-    }
-
-    /* ===== Pricing Section ===== */
     .pricing-section {
-      max-width: 600px;
-      margin: 7rem auto 3rem;
-      background: #222;
-      border-radius: 1rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-      padding: 2rem;
+      width: 90%;
+      padding: 1rem;
+      margin-top: 6rem;
     }
-
-    .pricing-section h2 {
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .service-title {
-      font-size: 1.5rem;
-      color: #ffd700;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .brand-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 2rem;
-    }
-
-    .brand-table th, .brand-table td {
-      border: 1px solid #444;
-      padding: 0.7rem 0.4rem;
-      text-align: left;
-    }
-
-    .brand-table th {
-      background: #333;
-      color: var(--accent);
-    }
-
-    .brand-table td {
-      background: #222;
-    }
-
-    .book-now-btn {
-      display: block;
-      background: var(--accent);
-      color: var(--white);
-      padding: 0.7rem 1.2rem;
-      border: none;
-      border-radius: 0.3rem;
-      font-size: 0.95rem;
-      font-weight: bold;
-      text-align: center;
-      margin: 1rem auto 0;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .book-now-btn:hover {
-      background: #fff;
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    /* ===== Footer ===== */
-    .footer {
-      background: #080808;
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem 0 1rem 0;
-      margin-top: 3rem;
-    }
-
-    .footer-content p {
-      margin: 0.3rem 0;
-      font-size: 1rem;
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 800px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-list {
-        position: absolute;
-        top: 64px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 78%;
-        max-width: 360px;
-        background: var(--nav);
-        border-radius: 10px;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
-        display: none;
-        padding: 12px 0;
-      }
-
-      .nav-list.show {
-        display: flex;
-      }
-
-      .nav-list li {
-        width: 100%;
-        margin: 6px 0;
-        display: flex;
-        justify-content: center;
-      }
-
-      .nav-list a {
-        display: inline-block;
-        width: auto;
-        text-align: center;
-        font-size: 1rem;
-        border-radius: 6px;
-      }
-
-      .book-btn a {
-        min-width: 110px;
-        padding: 6px 10px;
-        font-size: 0.88rem;
-        border-radius: 6px;
-        text-align: center;
-      }
-
-      .pricing-section {
-        width: 90%;
-        padding: 1.2rem;
-        margin-top: 6rem;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
+
   <!-- ===== Navbar ===== -->
   <nav class="navbar">
     <div class="logo">AutoMech</div>
-
     <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">☰</button>
 
     <ul id="navLinks" class="nav-list">
@@ -259,7 +247,6 @@
   <section class="pricing-section">
     <h2>Service Pricing</h2>
     <div class="service-title" id="serviceTitle">Select a service to view pricing</div>
-
     <table class="brand-table" id="brandTable" style="display:none;">
       <thead>
         <tr>
@@ -284,47 +271,54 @@
 
   <!-- ===== Script ===== -->
   <script>
-    // Toggle Menu
-    const toggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('navLinks');
-    toggle.addEventListener('click', () => {
-      const show = nav.classList.toggle('show');
-      toggle.setAttribute('aria-expanded', show ? 'true' : 'false');
+    // Navbar Toggle
+    const toggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("navLinks");
+    toggle.addEventListener("click", () => {
+      const show = nav.classList.toggle("show");
+      toggle.setAttribute("aria-expanded", show ? "true" : "false");
     });
 
-    // Pricing Logic
+    // Pricing Data
     const brandPricing = {
+      "Car Repair and Maintenance": { "Toyota": "₵950", "Honda": "₵980", "BMW": "₵1,850" },
       "Oil Change": { "Toyota": "₵300", "Honda": "₵320", "BMW": "₵680" },
       "Brake Service": { "Toyota": "₵700", "Honda": "₵750", "BMW": "₵1,450" },
-      "Tire Services": { "Toyota": "₵500", "Honda": "₵520", "BMW": "₵980" }
+      "Tire Services": { "Toyota": "₵500", "Honda": "₵520", "BMW": "₵980" },
+      "Engine Diagnostics": { "Toyota": "₵600", "Honda": "₵650", "BMW": "₵1,200" },
+      "Battery Replacement": { "Toyota": "₵450", "Honda": "₵480", "BMW": "₵950" },
+      "Transmission Service": { "Toyota": "₵1,000", "Honda": "₵1,050", "BMW": "₵2,000" },
+      "Suspension and Alignment": { "Toyota": "₵850", "Honda": "₵900", "BMW": "₵1,700" },
+      "Air Conditioning": { "Toyota": "₵500", "Honda": "₵550", "BMW": "₵1,100" }
     };
 
     function getServiceFromURL() {
       const params = new URLSearchParams(window.location.search);
-      return params.get('service');
+      return params.get("service");
     }
 
     function showBrandPricing(service) {
-      const title = document.getElementById('serviceTitle');
-      const brandTable = document.getElementById('brandTable');
-      const brandBody = document.getElementById('brandBody');
+      const title = document.getElementById("serviceTitle");
+      const brandTable = document.getElementById("brandTable");
+      const brandBody = document.getElementById("brandBody");
+
       if (service && brandPricing[service]) {
-        title.textContent = service + ' Pricing by Car Brand';
-        brandTable.style.display = '';
-        brandBody.innerHTML = '';
+        title.textContent = service + " Pricing by Car Brand";
+        brandTable.style.display = "";
+        brandBody.innerHTML = "";
         const prices = brandPricing[service];
         for (const brand in prices) {
-          const row = document.createElement('tr');
+          const row = document.createElement("tr");
           row.innerHTML = `<td>${brand}</td><td>${prices[brand]}</td>`;
           brandBody.appendChild(row);
         }
       } else {
-        title.textContent = 'Select a service to view pricing';
-        brandTable.style.display = 'none';
+        title.textContent = "Select a service to view pricing";
+        brandTable.style.display = "none";
       }
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener("DOMContentLoaded", function () {
       const service = getServiceFromURL();
       showBrandPricing(service);
     });
