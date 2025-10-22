@@ -2,17 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Book an Appointment - AutoMech</title>
 
   <style>
-    /* ===== Base Styles ===== */
-    body {
+    :root {
+      --bg: #111;
+      --nav: #080808;
+      --accent: #f76b1c;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: "Poppins", Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      background: var(--bg);
+      color: var(--white);
       min-height: 100vh;
+      padding-top: 64px; /* space for fixed navbar */
     }
 
     /* ===== Navbar ===== */
@@ -21,83 +33,89 @@
       justify-content: space-between;
       align-items: center;
       background: rgba(8, 8, 8, 0.9);
-      padding: 0.6rem 1.5rem;
+      padding: 0.6rem 1.2rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       position: fixed;
       width: 100%;
       top: 0;
       left: 0;
-      z-index: 100;
+      z-index: 20;
       backdrop-filter: blur(6px);
     }
 
-    .navbar .logo {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #f76b1c;
+    .logo {
       display: flex;
       align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--accent);
     }
 
-    .navbar img {
-      height: 45px;
-      margin-right: 8px;
+    .logo img {
+      height: 44px;
+      margin-right: 0;
     }
 
-    .navbar ul {
-      list-style: none;
+    .nav-list {
       display: flex;
-      gap: 1.3rem;
-      margin: 0;
-      padding: 0;
+      gap: 1.2rem;
+      list-style: none;
     }
 
-    .navbar ul li a {
+    .nav-list a {
       text-decoration: none;
-      color: #f9f9f9;
+      color: var(--white);
       font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      display: flex;
+      align-items: center;
       transition: color 0.2s;
-      padding: 0.4rem 1rem;
     }
 
-    .navbar ul li a:hover {
-      color: #f76b1c;
+    .nav-list a:hover {
+      color: var(--accent);
     }
 
-    .navbar ul li.book-btn a {
-      background: #f76b1c;
-      color: #fff !important;
-      border-radius: 0.4rem;
-      border: 2px solid #f76b1c;
-      font-weight: bold;
-      padding: 0.4rem 1rem;
+    .book-btn a {
+      background: var(--accent);
+      color: var(--white) !important;
+      border-radius: 6px;
+      border: 2px solid var(--accent);
+      font-weight: 700;
+      padding: 0.35rem 0.9rem;
       transition: background 0.2s, color 0.2s;
     }
 
-    .navbar ul li.book-btn a:hover {
-      background: #fff;
-      color: #f76b1c !important;
+    .book-btn a:hover {
+      background: var(--white);
+      color: var(--accent) !important;
     }
 
-    /* ===== Hamburger Menu ===== */
+    /* ===== Hamburger Menu (Menu Toggle Button) ===== */
     .menu-toggle {
       display: none;
-      flex-direction: column;
+      font-size: 1.9rem;
+      color: var(--white);
       cursor: pointer;
+      background: none;
+      border: none;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      appearance: none;
     }
 
-    .menu-toggle div {
-      width: 27px;
-      height: 3px;
-      background-color: #ffffff; /* ✅ white color for visibility */
-      margin: 4px 0;
-      transition: 0.3s;
+    .menu-toggle:focus,
+    .menu-toggle:active {
+      outline: none;
+      background: none;
+      box-shadow: none;
     }
 
     /* ===== Booking Section ===== */
     .booking-section {
       max-width: 420px;
-      margin: 8rem auto 3rem auto;
+      margin: 3rem auto 3rem auto;
       background: #222;
       border-radius: 1rem;
       box-shadow: 0 2px 12px rgba(0,0,0,0.15);
@@ -105,7 +123,7 @@
     }
 
     .booking-section h2 {
-      color: #f76b1c;
+      color: var(--accent);
       margin-bottom: 1.5rem;
       text-align: center;
       font-size: 2rem;
@@ -114,7 +132,7 @@
     .booking-form label {
       display: block;
       margin-bottom: 0.5rem;
-      color: #fff;
+      color: var(--white);
     }
 
     .booking-form input,
@@ -126,7 +144,7 @@
       border: none;
       border-radius: 0.3rem;
       background: #333;
-      color: #fff;
+      color: var(--white);
       font-size: 1rem;
     }
 
@@ -137,21 +155,21 @@
 
     .booking-form button {
       width: 100%;
-      background: #f76b1c;
-      color: #fff;
+      background: var(--accent);
+      color: var(--white);
       border: none;
       padding: 0.9rem;
       font-size: 1.1rem;
       border-radius: 0.3rem;
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 700;
       transition: background 0.2s, transform 0.2s;
     }
 
     .booking-form button:hover {
-      background: #fff;
-      color: #f76b1c;
-      border: 2px solid #f76b1c;
+      background: var(--white);
+      color: var(--accent);
+      border: 2px solid var(--accent);
       transform: translateY(-2px);
     }
 
@@ -165,8 +183,8 @@
 
     /* ===== Footer ===== */
     .footer {
-      background: #080808;
-      color: #fff;
+      background: var(--nav);
+      color: var(--white);
       text-align: center;
       padding: 1.5rem 0 1rem 0;
       margin-top: 3rem;
@@ -178,191 +196,36 @@
     }
 
     /* ===== Responsive Design ===== */
-    @media (max-width: 700px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.8rem 1rem;
-      }
-
+    @media (max-width: 800px) {
       .menu-toggle {
-        display: flex;
-      }
-
-      .navbar ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: rgba(8, 8, 8, 0.95);
-        position: absolute;
-        top: 60px;
-        left: 0;
-        padding: 1rem 0;
-      }
-
-      .navbar ul.active {
-        display: flex;
-      }
-
-      .navbar ul li {
-        text-align: center;
-        width: 100%;
-      }
-
-      .navbar ul li a {
-        width: 100%;
         display: block;
-        padding: 0.8rem 0;
       }
 
-      /* ✅ Reduce Book button size for mobile */
-      .navbar ul li.book-btn a {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.85rem;
+      .nav-list {
+        position: absolute;
+        top: 64px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 78%;
+        max-width: 360px;
+        background: var(--nav);
+        border-radius: 10px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+        display: none;
+        padding: 12px 0;
+        z-index: 15;
       }
 
-      .booking-section {
-        margin: 6rem 1rem 2rem 1rem;
-        padding: 1.5rem;
+      .nav-list.active {
+        display: flex;
       }
-    }
-  </style>
-</head>
-<body>
-  <!-- ===== Navbar ===== -->
-  <nav class="navbar">
-    <div class="logo">
-      <img src="logo 2.png" alt="AutoMech Logo" />
-      <span>AutoMech</span>
-    </div>
 
-    <div class="menu-toggle" id="menuToggle">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
-    <ul id="navMenu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li class="book-btn"><a href="book.html">Book</a></li>
-    </ul>
-  </nav>
-
-  <!-- ===== Booking Form ===== -->
-  <section class="booking-section">
-    <h2>Book an Appointment</h2>
-    <form class="booking-form" id="bookingForm">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="service">Service</label>
-      <select id="service" name="service" required>
-        <option value="">Select a service</option>
-        <option value="Car Repair and Maintenance">Car Repair and Maintenance</option>
-        <option value="Oil Change">Oil Change</option>
-        <option value="Brake Service">Brake Service</option>
-        <option value="Tire Services">Tire Services</option>
-        <option value="Engine Diagnostics">Engine Diagnostics</option>
-        <option value="Battery Replacement">Battery Replacement</option>
-        <option value="Air Conditioning">Air Conditioning</option>
-        <option value="Suspension and Alignment">Suspension and Alignment</option>
-        <option value="Transmission Service">Transmission Service</option>
-      </select>
-
-      <label for="carType">Car Type</label>
-      <select id="carType" name="carType" required>
-        <option value="">Select car type</option>
-        <option value="Small Car">Small Car</option>
-        <option value="SUV">SUV</option>
-        <option value="Luxurious Car">Luxurious Car</option>
-      </select>
-
-      <label for="carBrand">Car Brand</label>
-      <input type="text" id="carBrand" name="carBrand" placeholder="e.g. BMW, Toyota" required>
-
-      <label for="date">Preferred Date</label>
-      <input type="date" id="date" name="date" required>
-
-      <label for="message">Additional Message</label>
-      <textarea id="message" name="message" placeholder="Any extra details?"></textarea>
-
-      <button type="submit">Book Appointment</button>
-    </form>
-
-    <div class="success-message" id="successMessage">
-      Thank you! Your booking request has been sent.
-    </div>
-  </section>
-
-  <!-- ===== Footer ===== -->
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 AutoMech. All rights reserved.</p>
-      <p>Contact: infoAutoMech@gmail.com | Phone: +233 55 391 6228</p>
-      <p>Location: Kokompe Darkuman, Kanto Street</p>
-    </div>
-  </footer>
-
-  <!-- ===== EmailJS Integration ===== -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("tdG6auzNc-iNhPhRI");
-    })();
-
-    document.getElementById('bookingForm').onsubmit = function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value;
-      const service = document.getElementById('service').value;
-      const date = document.getElementById('date').value;
-      const email = document.getElementById('email').value;
-      const carType = document.getElementById('carType').value;
-      const carBrand = document.getElementById('carBrand').value;
-      const price = "₵350";
-
-      emailjs.send("service_5ks8qwf", "template_f32ij9f", {
-        user_email: email,
-        to_name: name,
-        service: service,
-        carBrand: carBrand,
-        date: date,
-        price: price
-      })
-      .then(() => {
-        emailjs.send("service_5ks8qwf", "template_rijwftw", {
-          user_email: "ezekieltagoe20@gmail.com",
-          to_name: "Mechanic Company",
-          service: service,
-          carBrand: carBrand,
-          date: date,
-          price: price,
-          customer_name: name,
-          customer_email: email
-        });
-
-        const msg = document.getElementById('successMessage');
-        msg.style.display = 'block';
-        msg.innerText = "Booking successful! Redirecting...";
-        setTimeout(() => window.location.href = "thankyou.html", 2000);
-      }, (error) => {
-        console.error("EmailJS error:", error);
-        alert("Failed to send email. Please try again.");
-      });
-    };
-
-    // ===== Mobile Menu Toggle =====
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.getElementById("navMenu");
-    menuToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-    });
-  </script>
-</body>
-</html>
+      .nav-list li {
+        width: 100%;
+        margin: 6px 0;
+        display: flex;
+        justify-content: center;
+      }
