@@ -229,3 +229,163 @@
         display: flex;
         justify-content: center;
       }
+
+      .nav-list a {
+        display: inline-block;
+        width: auto;
+        text-align: center;
+        font-size: 1rem;
+        border-radius: 6px;
+      }
+
+      .book-btn a {
+        min-width: 110px;
+        padding: 6px 10px;
+        font-size: 0.88rem;
+        border-radius: 6px;
+        text-align: center;
+      }
+
+      .booking-section {
+        margin: 3rem 1rem 2rem 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo 2.png" alt="AutoMech Logo" />
+      <span>AutoMech</span>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navMenu">☰</button>
+
+    <ul id="navMenu" class="nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="book-btn"><a href="book.html">Book</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== Booking Form ===== -->
+  <section class="booking-section">
+    <h2>Book an Appointment</h2>
+    <form class="booking-form" id="bookingForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="service">Service</label>
+      <select id="service" name="service" required>
+        <option value="">Select a service</option>
+        <option value="Car Repair and Maintenance">Car Repair and Maintenance</option>
+        <option value="Oil Change">Oil Change</option>
+        <option value="Brake Service">Brake Service</option>
+        <option value="Tire Services">Tire Services</option>
+        <option value="Engine Diagnostics">Engine Diagnostics</option>
+        <option value="Battery Replacement">Battery Replacement</option>
+        <option value="Air Conditioning">Air Conditioning</option>
+        <option value="Suspension and Alignment">Suspension and Alignment</option>
+        <option value="Transmission Service">Transmission Service</option>
+      </select>
+
+      <label for="carType">Car Type</label>
+      <select id="carType" name="carType" required>
+        <option value="">Select car type</option>
+        <option value="Small Car">Small Car</option>
+        <option value="SUV">SUV</option>
+        <option value="Luxurious Car">Luxurious Car</option>
+      </select>
+
+      <label for="carBrand">Car Brand</label>
+      <input type="text" id="carBrand" name="carBrand" placeholder="e.g. BMW, Toyota" required />
+
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="message">Additional Message</label>
+      <textarea id="message" name="message" placeholder="Any extra details?"></textarea>
+
+      <button type="submit">Book Appointment</button>
+    </form>
+
+    <div class="success-message" id="successMessage">
+      Thank you! Your booking request has been sent.
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 AutoMech. All rights reserved.</p>
+      <p>Contact: <a href="mailto:infoAutoMech@gmail.com">infoAutoMech@gmail.com</a> | Phone: +233 55 391 6228</p>
+      <p>Location: Kokompe Darkuman, Kanto Street</p>
+    </div>
+  </footer>
+
+  <!-- ===== EmailJS Integration ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("tdG6auzNc-iNhPhRI");
+    })();
+
+    document.getElementById('bookingForm').onsubmit = function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const service = document.getElementById('service').value;
+      const date = document.getElementById('date').value;
+      const email = document.getElementById('email').value;
+      const carType = document.getElementById('carType').value;
+      const carBrand = document.getElementById('carBrand').value;
+      const price = "₵350";
+
+      emailjs.send("service_5ks8qwf", "template_f32ij9f", {
+        user_email: email,
+        to_name: name,
+        service: service,
+        carBrand: carBrand,
+        date: date,
+        price: price
+      })
+        .then(() => {
+          emailjs.send("service_5ks8qwf", "template_rijwftw", {
+            user_email: "ezekieltagoe20@gmail.com",
+            to_name: "Mechanic Company",
+            service: service,
+            carBrand: carBrand,
+            date: date,
+            price: price,
+            customer_name: name,
+            customer_email: email
+          });
+
+          const msg = document.getElementById('successMessage');
+          msg.style.display = 'block';
+          msg.innerText = "Booking successful! Redirecting...";
+          setTimeout(() => window.location.href = "thankyou.html", 2000);
+        }, (error) => {
+          console.error("EmailJS error:", error);
+          alert("Failed to send email. Please try again.");
+        });
+    };
+
+    // ===== Mobile Menu Toggle =====
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !expanded);
+    });
+  </script>
+</body>
+</html>
