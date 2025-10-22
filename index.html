@@ -146,20 +146,21 @@
         display: block;
       }
 
-      /* Centered dropdown menu */
       .navbar ul {
         flex-direction: column;
-        align-items: center;              /* Centers all menu items */
+        align-items: center;
+        justify-content: center;
         position: absolute;
         top: 70px;
         left: 50%;
         transform: translateX(-50%);
-        width: 80%;                       /* Reduced width */
+        width: 75%;
         background: #080808;
         display: none;
         padding: 1rem 0;
-        border-radius: 0.6rem;            /* Slight rounding for clean look */
+        border-radius: 0.6rem;
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        text-align: center;
       }
 
       .navbar ul.show {
@@ -168,22 +169,23 @@
 
       .navbar ul li {
         width: 100%;
-        text-align: center;
       }
 
       .navbar ul li a {
         width: 100%;
         justify-content: center;
         padding: 0.8rem 1rem;
+        font-size: 1rem;
       }
 
       /* Smaller centered Book button */
       .navbar ul li.book-btn a {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-        width: 60%;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+        width: 40%;
         margin: 0.5rem auto;
         display: block;
+        text-align: center;
       }
 
       /* Hero adjustments for mobile */
