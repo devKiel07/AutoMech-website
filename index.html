@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +29,7 @@
       left: 0;
       right: 0;
       z-index: 10;
+      backdrop-filter: blur(5px);
     }
 
     .navbar .logo {
@@ -39,8 +41,8 @@
     }
 
     .navbar img {
-      height: 55px;
-      margin-right: 10px;
+      height: 45px;
+      margin-right: 8px;
     }
 
     .navbar ul {
@@ -57,8 +59,6 @@
       font-weight: 500;
       transition: color 0.2s;
       padding: 0.4rem 1rem;
-      display: flex;
-      align-items: center;
     }
 
     .navbar ul li a:hover {
@@ -93,6 +93,7 @@
     .hero-content {
       max-width: 550px;
       backdrop-filter: blur(2px);
+      margin-top: 3rem;
     }
 
     .hero h1 {
@@ -126,23 +127,51 @@
       transform: translateY(-2px);
     }
 
-    /* ===== Mobile Responsive ===== */
-    @media (max-width: 800px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.8rem 1rem;
-      }
+    /* ===== Responsive Navbar Toggle ===== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
 
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    /* ===== Mobile Responsive ===== */
+    @media (max-width: 850px) {
       .navbar ul {
+        display: none;
         flex-direction: column;
         width: 100%;
-        gap: 0.5rem;
+        background: rgba(8, 8, 8, 0.95);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 1rem 0;
+      }
+
+      .navbar ul.active {
+        display: flex;
+      }
+
+      .navbar ul li {
+        text-align: center;
+        width: 100%;
       }
 
       .navbar ul li a {
         width: 100%;
-        padding: 0.6rem;
+        display: block;
+        padding: 0.8rem 0;
+      }
+
+      .menu-toggle {
+        display: flex;
       }
 
       .hero {
@@ -158,6 +187,15 @@
       .hero h1 {
         font-size: 2rem;
       }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .explore-btn {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+      }
     }
   </style>
 </head>
@@ -168,7 +206,14 @@
       <img src="logo 2.png" alt="AutoMech Logo">
       <span>AutoMech</span>
     </div>
-    <ul>
+
+    <div class="menu-toggle" id="menuToggle">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <ul id="navMenu">
       <li><a href="index.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="about.html">About Us</a></li>
@@ -185,5 +230,15 @@
       <a href="services.html" class="explore-btn">Explore</a>
     </div>
   </section>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
