@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact Us - AutoMech</title>
   <style>
-    body {
+    :root {
+      --bg: #111;
+      --nav: #080808;
+      --accent: #f76b1c;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: "Poppins", Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      background: var(--bg);
+      color: var(--white);
       min-height: 100vh;
+      padding-top: 64px; /* space for fixed navbar */
     }
 
     /* ===== Navbar ===== */
@@ -18,77 +31,67 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #080808;
-      padding: 0.6rem 1.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      background: rgba(8, 8, 8, 0.9);
+      padding: 0.6rem 1.2rem;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 10;
+      z-index: 20;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
-    .navbar .logo {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #f76b1c;
+    .logo {
       display: flex;
       align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--accent);
     }
 
-    .navbar img {
-      height: 50px;
-      margin-right: 10px;
+    .logo img {
+      height: 44px;
     }
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .navbar ul {
+    .nav-list {
+      display: flex;
+      gap: 1.2rem;
       list-style: none;
-      display: flex;
-      gap: 1.3rem;
-      margin: 0;
-      padding: 0;
     }
 
-    .navbar ul li a {
+    .nav-list a {
+      color: var(--white);
       text-decoration: none;
-      color: #f9f9f9;
+      padding: 0.4rem 0.9rem;
       font-weight: 500;
-      transition: color 0.2s;
-      padding: 0.4rem 1rem;
       display: flex;
       align-items: center;
+      transition: color 0.2s;
     }
 
-    .navbar ul li a:hover {
-      color: #f76b1c;
+    .nav-list a:hover {
+      color: var(--accent);
     }
 
-    .navbar ul li.book-btn a {
-      background: #f76b1c;
-      color: #fff !important;
-      border-radius: 0.4rem;
-      border: 2px solid #f76b1c;
-      font-weight: bold;
-      padding: 0.4rem 1rem;
+    .book-btn a {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.35rem 0.9rem;
+      border-radius: 6px;
+      border: 2px solid var(--accent);
+      font-weight: 700;
       transition: background 0.2s, color 0.2s;
     }
 
-    .navbar ul li.book-btn a:hover {
-      background: #fff;
-      color: #f76b1c !important;
+    .book-btn a:hover {
+      background: var(--white);
+      color: var(--accent);
     }
 
     /* ===== Contact Section ===== */
     .contact-section {
       max-width: 1000px;
-      margin: 7rem auto 3rem;
+      margin: 3rem auto 3rem;
       background: #222;
       border-radius: 1rem;
       padding: 2.5rem;
@@ -104,7 +107,7 @@
     }
 
     .contact-info h2 {
-      color: #f76b1c;
+      color: var(--accent);
       margin-bottom: 1rem;
       font-size: 2rem;
     }
@@ -121,7 +124,7 @@
     }
 
     .info-item strong {
-      color: #f76b1c;
+      color: var(--accent);
     }
 
     .contact-form {
@@ -129,7 +132,7 @@
     }
 
     .contact-form h3 {
-      color: #f76b1c;
+      color: var(--accent);
       margin-bottom: 1.5rem;
       text-align: center;
     }
@@ -142,7 +145,7 @@
       border: none;
       border-radius: 0.4rem;
       background: #333;
-      color: #fff;
+      color: var(--white);
       font-size: 1rem;
     }
 
@@ -153,27 +156,27 @@
 
     .contact-form button {
       width: 100%;
-      background: #f76b1c;
-      color: #fff;
+      background: var(--accent);
+      color: var(--white);
       border: none;
       padding: 0.9rem;
       font-size: 1rem;
       border-radius: 0.4rem;
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 700;
       transition: background 0.3s, transform 0.2s;
     }
 
     .contact-form button:hover {
-      background: #fff;
-      color: #f76b1c;
+      background: var(--white);
+      color: var(--accent);
       transform: translateY(-2px);
     }
 
     /* ===== Footer ===== */
     .footer {
-      background: #080808;
-      color: #fff;
+      background: var(--nav);
+      color: var(--white);
       text-align: center;
       padding: 1.5rem 0 1rem 0;
       margin-top: 3rem;
@@ -184,36 +187,75 @@
       font-size: 1rem;
     }
 
-    /* ===== Responsive ===== */
+    /* ===== Responsive Menu ===== */
+    .menu-toggle {
+      display: none;
+      font-size: 1.9rem;
+      color: var(--white);
+      cursor: pointer;
+      background: none;
+      border: none;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      appearance: none;
+    }
+
+    .menu-toggle:focus,
+    .menu-toggle:active {
+      outline: none;
+      background: none;
+      box-shadow: none;
+    }
+
     @media (max-width: 800px) {
       .menu-toggle {
         display: block;
       }
 
-      .navbar ul {
-        flex-direction: column;
+      .nav-list {
         position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: #080808;
+        top: 64px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 78%;
+        max-width: 360px;
+        background: var(--nav);
+        border-radius: 10px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
         display: none;
-        padding: 1rem 0;
+        padding: 12px 0;
+        z-index: 15;
       }
 
-      .navbar ul.show {
+      .nav-list.show {
         display: flex;
       }
 
-      .navbar ul li a {
+      .nav-list li {
         width: 100%;
-        justify-content: flex-start;
-        padding: 0.8rem 1rem;
+        margin: 6px 0;
+        display: flex;
+        justify-content: center;
       }
 
-      .navbar ul li.book-btn a {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.9rem;
+      .nav-list a {
+        display: inline-block;
+        width: auto;
+        text-align: center;
+        font-size: 1rem;
+        border-radius: 6px;
+      }
+
+      .book-btn a {
+        min-width: 110px;
+        padding: 6px 10px;
+        font-size: 0.88rem;
+        border-radius: 6px;
+        text-align: center;
       }
 
       .contact-section {
@@ -222,7 +264,8 @@
         margin-top: 6rem;
       }
 
-      .contact-info, .contact-form {
+      .contact-info,
+      .contact-form {
         width: 100%;
       }
     }
@@ -236,8 +279,8 @@
       <img src="logo 2.png" alt="AutoMech Logo" />
       <span>AutoMech</span>
     </div>
-    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-    <ul id="navLinks">
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <ul id="navLinks" class="nav-list">
       <li><a href="index.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="about.html">About Us</a></li>
@@ -260,9 +303,9 @@
     <div class="contact-form">
       <h3>Send a Message</h3>
       <form id="contactForm">
-        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-        <input type="email" id="email" name="email" placeholder="Your Email Address" required>
-        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+        <input type="text" id="name" name="name" placeholder="Your Full Name" required />
+        <input type="email" id="email" name="email" placeholder="Your Email Address" required />
+        <input type="text" id="subject" name="subject" placeholder="Subject" required />
         <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
         <button type="submit">Send Message</button>
       </form>
@@ -273,40 +316,44 @@
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2025 AutoMech. All rights reserved.</p>
-      <p>Contact: infoAutoMech@gmail.com | Phone: +233 55 391 6228</p>
+      <p>Contact: <a href="mailto:infoAutoMech@gmail.com">infoAutoMech@gmail.com</a> | Phone: +233 55 391 6228</p>
       <p>Location: Kokompe Darkuman, Kanto Street</p>
     </div>
   </footer>
 
-  <!-- ===== Scripts ===== -->
+  <!-- ===== Toggle Script ===== -->
   <script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("show");
-    }
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const show = nav.classList.toggle('show');
+      toggle.setAttribute('aria-expanded', show ? 'true' : 'false');
+    });
   </script>
 
   <!-- ===== EmailJS integration ===== -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    (function(){
+    (function () {
       emailjs.init("tdG6auzNc-iNhPhRI"); // Your EmailJS Public Key
     })();
 
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
-      emailjs.send("service_5ks8qwf", "template_rijwftw", {
-        from_name: document.getElementById("name").value,
-        from_email: document.getElementById("email").value,
-        subject: document.getElementById("subject").value,
-        message: document.getElementById("message").value,
-      })
-      .then(() => {
-        window.location.href = "thankyou.html";
-      })
-      .catch(() => {
-        alert("Failed to send message. Please try again.");
-      });
+      emailjs
+        .send("service_5ks8qwf", "template_rijwftw", {
+          from_name: document.getElementById("name").value,
+          from_email: document.getElementById("email").value,
+          subject: document.getElementById("subject").value,
+          message: document.getElementById("message").value,
+        })
+        .then(() => {
+          window.location.href = "thankyou.html";
+        })
+        .catch(() => {
+          alert("Failed to send message. Please try again.");
+        });
     });
   </script>
 </body>
