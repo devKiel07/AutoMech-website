@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +13,7 @@
       min-height: 100vh;
     }
 
-    /* 🔸 Navbar */
+    /* ===== Navbar ===== */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -23,6 +21,11 @@
       background: #080808;
       padding: 0.6rem 1.5rem;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
     }
 
     .navbar .logo {
@@ -34,8 +37,15 @@
     }
 
     .navbar img {
-      height: 55px;
+      height: 50px;
       margin-right: 10px;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: #fff;
+      cursor: pointer;
     }
 
     .navbar ul {
@@ -75,10 +85,10 @@
       color: #f76b1c !important;
     }
 
-    /* 🔸 Contact Section */
+    /* ===== Contact Section ===== */
     .contact-section {
       max-width: 1000px;
-      margin: 3rem auto;
+      margin: 7rem auto 3rem;
       background: #222;
       border-radius: 1rem;
       padding: 2.5rem;
@@ -106,11 +116,11 @@
       margin-bottom: 1rem;
     }
 
-    .contact-info .info-item {
+    .info-item {
       margin-bottom: 1rem;
     }
 
-    .contact-info .info-item strong {
+    .info-item strong {
       color: #f76b1c;
     }
 
@@ -160,7 +170,7 @@
       transform: translateY(-2px);
     }
 
-    /* 🔸 Footer */
+    /* ===== Footer ===== */
     .footer {
       background: #080808;
       color: #fff;
@@ -174,11 +184,42 @@
       font-size: 1rem;
     }
 
-    /* 🔸 Responsive */
+    /* ===== Responsive ===== */
     @media (max-width: 800px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #080808;
+        display: none;
+        padding: 1rem 0;
+      }
+
+      .navbar ul.show {
+        display: flex;
+      }
+
+      .navbar ul li a {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0.8rem 1rem;
+      }
+
+      .navbar ul li.book-btn a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
       .contact-section {
         flex-direction: column;
         padding: 1.5rem;
+        margin-top: 6rem;
       }
 
       .contact-info, .contact-form {
@@ -189,13 +230,14 @@
 </head>
 
 <body>
-  <!-- Navbar -->
+  <!-- ===== Navbar ===== -->
   <nav class="navbar">
     <div class="logo">
       <img src="logo 2.png" alt="AutoMech Logo" />
       <span>AutoMech</span>
     </div>
-    <ul>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <ul id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="about.html">About Us</a></li>
@@ -204,7 +246,7 @@
     </ul>
   </nav>
 
-  <!-- Contact Section -->
+  <!-- ===== Contact Section ===== -->
   <section class="contact-section">
     <div class="contact-info">
       <h2>Contact Us</h2>
@@ -227,7 +269,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2025 AutoMech. All rights reserved.</p>
@@ -236,17 +278,23 @@
     </div>
   </footer>
 
-  <!-- EmailJS integration -->
+  <!-- ===== Scripts ===== -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+  </script>
+
+  <!-- ===== EmailJS integration ===== -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     (function(){
-      emailjs.init("tdG6auzNc-iNhPhRI"); // Replace with your EmailJS Public Key
+      emailjs.init("tdG6auzNc-iNhPhRI"); // Your EmailJS Public Key
     })();
 
     document.getElementById("contactForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      // Send message via EmailJS
       emailjs.send("service_5ks8qwf", "template_rijwftw", {
         from_name: document.getElementById("name").value,
         from_email: document.getElementById("email").value,
@@ -254,7 +302,6 @@
         message: document.getElementById("message").value,
       })
       .then(() => {
-        // Redirect to thank-you page on success
         window.location.href = "thankyou.html";
       })
       .catch(() => {
