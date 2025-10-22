@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Appointment</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #080808;
+      padding: 0.6rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .navbar .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #f76b1c;
+      display: flex;
+      align-items: center;
+    }
+    .navbar img {
+      height: 55px;
+      margin-right: 10px;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar ul li a {
+      text-decoration: none;
+      color: #f9f9f9;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding: 0.5rem 1.2rem;
+    }
+    .navbar ul li a:hover {
+      color: #f76b1c;
+    }
+    .navbar ul li.book-btn a {
+      background: #f76b1c;
+      color: #fff !important;
+      border-radius: 0.3rem;
+      border: 2px solid #f76b1c;
+      font-weight: bold;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.95rem;
+    }
+    .navbar ul li.book-btn a:hover {
+      background: #fff;
+      color: #f76b1c !important;
+    }
+    .booking-section {
+      max-width: 420px;
+      margin: 3rem auto;
+      background: #222;
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      padding: 2rem;
+    }
+    .booking-section h2 {
+      color: #f76b1c;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .booking-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .booking-form input,
+    .booking-form select,
+    .booking-form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1.2rem;
+      border: none;
+      border-radius: 0.3rem;
+      background: #333;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .booking-form textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+    .booking-form button {
+      width: 100%;
+      background: #f76b1c;
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1.1rem;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .booking-form button:hover {
+      background: #fff;
+      color: #f76b1c;
+      border: 2px solid #f76b1c;
+    }
+    .success-message {
+      color: #4caf50;
+      text-align: center;
+      margin-top: 1rem;
+      display: none;
+    }
+    .footer {
+      background: #080808;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 0 1rem 0;
+      margin-top: 3rem;
+    }
+    .footer-content p {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+    }
+    @media (max-width: 600px) {
+      .booking-section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo 2.png" alt="AutoMech Logo">
+      <span>AutoMech</span>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="book-btn"><a href="book.html">Book</a></li>
+    </ul>
+  </nav>
+
+  <!-- BOOKING FORM -->
+  <section class="booking-section">
+    <h2>Book an Appointment</h2>
+    <form class="booking-form" id="bookingForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="service">Service</label>
+      <select id="service" name="service" required>
+        <option value="">Select a service</option>
+        <option value="Car Repair and Maintenance">Car Repair and Maintenance</option>
+        <option value="Oil Change">Oil Change</option>
+        <option value="Brake Service">Brake Service</option>
+        <option value="Tire Services">Tire Services</option>
+        <option value="Engine Diagnostics">Engine Diagnostics</option>
+        <option value="Battery Replacement">Battery Replacement</option>
+        <option value="Air Conditioning Service">Air Conditioning Service</option>
+        <option value="Suspension & Alignment">Suspension & Alignment</option>
+        <option value="Transmission Service">Transmission Service</option>
+        <option value="General Car Maintenance">General Car Maintenance</option>
+      </select>
+
+      <label for="carType">Car Type</label>
+      <select id="carType" name="carType" required>
+        <option value="">Select car type</option>
+        <option value="Small Car">Small Car</option>
+        <option value="SUV">SUV</option>
+        <option value="Luxurious Car">Luxurious Car</option>
+      </select>
+
+      <label for="carBrand">Car Brand</label>
+      <input type="text" id="carBrand" name="carBrand" placeholder="e.g. BMW, Toyota" required>
+
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="message">Additional Message</label>
+      <textarea id="message" name="message" placeholder="Any extra details?"></textarea>
+
+      <button type="submit">Book Appointment</button>
+    </form>
+
+    <div class="success-message" id="successMessage">Thank you! Your booking request has been sent.</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 AutoMech. All rights reserved.</p>
+      <p>Contact: infoAutoMech@gmail.com | Phone: +233 55 391 6228</p>
+      <p>Location: Kokompe Darkuman, Kanto Street</p>
+    </div>
+  </footer>
+
+  <!-- EMAILJS SCRIPT -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("tdG6auzNc-iNhPhRI"); // your EmailJS public key
+    })();
+
+    document.getElementById('bookingForm').onsubmit = function(e) {
+      e.preventDefault();
+
+      var name = document.getElementById('name').value;
+      var service = document.getElementById('service').value;
+      var date = document.getElementById('date').value;
+      var email = document.getElementById('email').value;
+      var carType = document.getElementById('carType').value;
+      var carBrand = document.getElementById('carBrand').value;
+      var price = "₵350"; // Change dynamically if needed
+
+      // Send confirmation email to customer
+      emailjs.send("service_5ks8qwf", "template_f32ij9f", {
+        user_email: email,
+        to_name: name,
+        service: service,
+        carBrand: carBrand,
+        date: date,
+        price: price
+      })
+      .then(function(response) {
+        // Notify mechanic company
+        emailjs.send("service_5ks8qwf", "template_rijwftw", {
+          user_email: "ezekieltagoe20@gmail.com",
+          to_name: "Mechanic Company",
+          service: service,
+          carBrand: carBrand,
+          date: date,
+          price: price,
+          customer_name: name,
+          customer_email: email
+        });
+
+        // Show success message then redirect
+        const msg = document.getElementById('successMessage');
+        msg.style.display = 'block';
+        msg.innerText = "Booking successful! Redirecting to payment...";
+
+        setTimeout(function() {
+          window.location.href = "payment.html";
+        }, 2000);
+      }, function(error) {
+        console.error("EmailJS error:", error);
+        alert("Failed to send email. Please try again.");
+      });
+    };
+  </script>
+</body>
+</html>
