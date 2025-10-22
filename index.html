@@ -5,17 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>AutoMech - Innovative Auto Solutions</title>
 <style>
-  /* ---------- General ---------- */
   :root{
     --bg:#111;
     --nav:#080808;
     --accent:#f76b1c;
-    --card:#222;
     --white:#fff;
   }
-  *{box-sizing:border-box}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
   body{
-    margin:0;
     font-family:"Poppins", Arial, sans-serif;
     background: var(--bg) url("bG image.jpg") no-repeat center center/cover;
     color:var(--white);
@@ -24,7 +23,7 @@
     flex-direction:column;
   }
 
-  /* ---------- Navbar ---------- */
+  /* ===== Navbar ===== */
   .navbar{
     display:flex;
     justify-content:space-between;
@@ -36,25 +35,18 @@
     z-index:20;
   }
   .logo{display:flex;align-items:center;gap:0.5rem;font-weight:700;color:var(--accent)}
-  .logo img{height:44px;display:block}
+  .logo img{height:44px}
 
-  /* desktop nav list */
   .nav-list{
     display:flex;
     gap:1.2rem;
-    align-items:center;
-    margin:0;
-    padding:0;
     list-style:none;
   }
-  .nav-list li{margin:0}
+
   .nav-list a{
     color:var(--white);
     text-decoration:none;
-    padding:0.35rem 0.9rem;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+    padding:0.4rem 0.9rem;
     font-weight:500;
   }
   .nav-list a:hover{color:var(--accent)}
@@ -69,20 +61,31 @@
   }
   .book-btn a:hover{background:var(--white);color:var(--accent)}
 
-  /* hamburger */
+  /* ===== Menu Toggle ===== */
   .menu-toggle{
-    display:none; /* visible only on small screens */
+    display:none;
     font-size:1.9rem;
     color:var(--white);
     cursor:pointer;
-    user-select:none;
-    line-height:1;
-    padding:6px;
+    background:none;        /* remove white default background */
+    border:none;            /* remove default button border */
+    outline:none;           /* no outline */
+    box-shadow:none;        /* remove glow on click */
+    padding:0;
+    margin:0;
+    appearance:none;        /* fully neutral button */
   }
 
-  /* ---------- Hero ---------- */
+  .menu-toggle:focus,
+  .menu-toggle:active{
+    outline:none;
+    background:none;
+    box-shadow:none;
+  }
+
+  /* ===== Hero ===== */
   .hero{
-    padding:6.2rem 2rem 4rem; /* leave room for fixed nav */
+    padding:6rem 2rem 4rem;
     display:flex;
     align-items:center;
     justify-content:flex-start;
@@ -90,104 +93,73 @@
     min-height:calc(100vh - 88px);
   }
   .hero-content{max-width:640px}
-  .hero h1{color:var(--accent);font-size:2.6rem;margin:0 0 0.8rem}
+  .hero h1{color:var(--accent);font-size:2.6rem;margin-bottom:1rem}
   .hero p{color:#eee;line-height:1.6}
-  .explore-btn{background:var(--accent);color:#fff;padding:0.75rem 1.4rem;border-radius:8px;text-decoration:none;font-weight:700}
+  .explore-btn{
+    background:var(--accent);
+    color:#fff;
+    padding:0.75rem 1.4rem;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:700;
+  }
+  .explore-btn:hover{background:#fff;color:var(--accent)}
 
-  /* -------- Responsive / Mobile dropdown centered -------- */
+  /* ===== Responsive Dropdown ===== */
   @media (max-width:800px){
     .menu-toggle{display:block}
 
-    /* hide desktop nav by default; we will show the centered dropdown instead */
     .nav-list{
-      /* dropdown container centered below navbar */
-      position: absolute;
-      top:64px; /* slightly below nav */
+      position:absolute;
+      top:64px;
       left:50%;
       transform:translateX(-50%);
-      width:78%;              /* narrow width */
+      width:78%;
       max-width:360px;
       background:var(--nav);
       border-radius:10px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.45);
       flex-direction:column;
-      gap:0;
-      padding:12px 12px;
-      display:none;          /* toggled via .show */
-      align-items:center;    /* center children horizontally */
+      align-items:center;
       text-align:center;
+      box-shadow:0 8px 20px rgba(0,0,0,0.45);
+      display:none;
+      padding:12px 0;
     }
+    .nav-list.show{display:flex}
 
-    /* shown state */
-    .nav-list.show{ display:flex }
+    .nav-list li{width:100%;margin:6px 0;display:flex;justify-content:center;}
+    .nav-list a{display:inline-block;width:auto;text-align:center;font-size:1rem;border-radius:6px;}
 
-    /* each menu item */
-    .nav-list li{
-      width:100%;
-      margin:6px 0;
-      display:flex;
-      justify-content:center; /* center each item horizontally */
-    }
-
-    /* links become inline blocks centered */
-    .nav-list a{
-      display:inline-block;
-      padding:10px 14px;
-      width:auto;              /* do not stretch full width */
-      text-align:center;
-      font-size:1rem;
-      border-radius:6px;
-      color:var(--white);
-    }
-    .nav-list a:hover{ background: rgba(255,255,255,0.03); color:var(--accent) }
-
-    /* smaller centered Book button */
-    .book-btn{
-      display:flex;
-      justify-content:center;
-      width:100%;
-      margin-top:6px;
-    }
     .book-btn a{
-      display:inline-block;
-      width:auto;
-      min-width:110px;        /* keeps button usable */
-      padding:6px 10px;       /* small padding */
+      min-width:110px;
+      padding:6px 10px;
       font-size:0.88rem;
       border-radius:6px;
       text-align:center;
     }
-
-    /* ensure the logo area stays left and toggle right */
-    .navbar{ padding:10px 12px }
   }
 
-  /* small screens: make hero content centered */
   @media (max-width:460px){
-    .hero{padding:5.2rem 1rem}
-    .hero h1{font-size:1.8rem}
+    .hero{padding:5.2rem 1rem;text-align:center;justify-content:center}
+    .hero h1{font-size:1.9rem}
   }
 </style>
 </head>
 <body>
-  <nav class="navbar" role="navigation" aria-label="Main">
+  <nav class="navbar">
     <div class="logo">
-      <img src="logo 2.png" alt="AutoMech logo">
+      <img src="logo 2.png" alt="AutoMech Logo">
       <span>AutoMech</span>
     </div>
 
-    <!-- hamburger toggle (visible on mobile) -->
     <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">☰</button>
 
-    <!-- nav list -->
-    <ul id="navLinks" class="nav-list" role="menubar" aria-hidden="true">
-      <li role="none"><a role="menuitem" href="index.html">Home</a></li>
-      <li role="none"><a role="menuitem" href="services.html">Services</a></li>
-      <li role="none"><a role="menuitem" href="about.html">About Us</a></li>
-      <li role="none"><a role="menuitem" href="contact.html">Contact</a></li>
-
-      <!-- Book button is centered and small -->
-      <li class="book-btn" role="none"><a role="menuitem" href="book.html">Book</a></li>
+    <ul id="navLinks" class="nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="book-btn"><a href="book.html">Book</a></li>
     </ul>
   </nav>
 
@@ -195,30 +167,17 @@
     <div class="hero-content">
       <h1>Innovative Solutions for Automobiles</h1>
       <p>At AutoMech, we combine technology and expertise to keep your vehicle running efficiently and reliably.</p>
-      <p><a class="explore-btn" href="services.html">Explore</a></p>
+      <a href="services.html" class="explore-btn">Explore</a>
     </div>
   </section>
 
-<script>
-  // Simple toggle: shows centered dropdown on mobile
-  (function(){
+  <script>
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('navLinks');
-
-    toggle.addEventListener('click', function(){
-      const showing = nav.classList.toggle('show');
-      // accessibility attributes
-      toggle.setAttribute('aria-expanded', showing ? 'true' : 'false');
-      nav.setAttribute('aria-hidden', showing ? 'false' : 'true');
-      // move focus to first item when opened (helps accessibility)
-      if(showing){
-        const first = nav.querySelector('a');
-        if(first) first.focus();
-      } else {
-        toggle.focus();
-      }
+    toggle.addEventListener('click', () => {
+      const show = nav.classList.toggle('show');
+      toggle.setAttribute('aria-expanded', show ? 'true' : 'false');
     });
-  })();
-</script>
+  </script>
 </body>
 </html>
