@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Service Pricing - AutoMech</title>
   <style>
-    /* ===== Base Styles ===== */
     body {
       margin: 0;
       font-family: "Poppins", Arial, sans-serif;
@@ -19,14 +18,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(8, 8, 8, 0.9);
+      background: #080808;
       padding: 0.6rem 1.5rem;
       position: fixed;
-      width: 100%;
       top: 0;
       left: 0;
-      z-index: 100;
-      backdrop-filter: blur(6px);
+      right: 0;
+      z-index: 10;
     }
 
     .navbar .logo {
@@ -37,9 +35,11 @@
       align-items: center;
     }
 
-    .navbar img {
-      height: 45px;
-      margin-right: 8px;
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: #fff;
+      cursor: pointer;
     }
 
     .navbar ul {
@@ -77,28 +77,13 @@
       color: #f76b1c !important;
     }
 
-    /* ===== Mobile Menu ===== */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background-color: #fff;
-      margin: 4px 0;
-      transition: 0.3s;
-    }
-
     /* ===== Pricing Section ===== */
     .pricing-section {
       max-width: 600px;
-      margin: 8rem auto 3rem auto;
+      margin: 7rem auto 3rem;
       background: #222;
       border-radius: 1rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
       padding: 2rem;
     }
 
@@ -106,31 +91,24 @@
       color: #f76b1c;
       margin-bottom: 1.5rem;
       text-align: center;
-      font-size: 2rem;
     }
 
     .service-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       color: #ffd700;
       margin-bottom: 1rem;
       text-align: center;
-    }
-
-    .table-wrapper {
-      overflow-x: auto;
     }
 
     .brand-table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 2rem;
-      min-width: 400px;
     }
 
-    .brand-table th,
-    .brand-table td {
+    .brand-table th, .brand-table td {
       border: 1px solid #444;
-      padding: 0.7rem;
+      padding: 0.7rem 0.4rem;
       text-align: left;
     }
 
@@ -143,7 +121,6 @@
       background: #222;
     }
 
-    /* ===== Button ===== */
     .book-now-btn {
       display: block;
       background: #f76b1c;
@@ -154,7 +131,7 @@
       font-size: 1rem;
       font-weight: bold;
       text-align: center;
-      margin: 0 auto;
+      margin: 1rem auto 0;
       cursor: pointer;
       transition: background 0.3s, transform 0.3s;
     }
@@ -165,12 +142,11 @@
       transform: translateY(-2px);
     }
 
-    /* ===== Footer ===== */
     .footer {
       background: #080808;
       color: #fff;
       text-align: center;
-      padding: 1.5rem 0;
+      padding: 1.5rem 0 1rem 0;
       margin-top: 3rem;
     }
 
@@ -179,66 +155,51 @@
       font-size: 1rem;
     }
 
-    /* ===== Responsive Styles ===== */
-    @media (max-width: 700px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.8rem 1rem;
-      }
-
+    /* ===== Responsive ===== */
+    @media (max-width: 800px) {
       .menu-toggle {
-        display: flex;
+        display: block;
       }
 
       .navbar ul {
-        display: none;
         flex-direction: column;
-        width: 100%;
-        background: rgba(8, 8, 8, 0.95);
         position: absolute;
-        top: 60px;
+        top: 70px;
         left: 0;
+        width: 100%;
+        background: #080808;
+        display: none;
         padding: 1rem 0;
       }
 
-      .navbar ul.active {
+      .navbar ul.show {
         display: flex;
-      }
-
-      .navbar ul li {
-        text-align: center;
-        width: 100%;
       }
 
       .navbar ul li a {
         width: 100%;
-        display: block;
-        padding: 0.8rem 0;
+        justify-content: flex-start;
+        padding: 0.8rem 1rem;
+      }
+
+      .navbar ul li.book-btn a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
       }
 
       .pricing-section {
-        margin: 6rem 1rem 2rem 1rem;
-        padding: 1.5rem;
+        width: 90%;
+        padding: 1rem;
+        margin-top: 6rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- ===== Navbar ===== -->
   <nav class="navbar">
-    <div class="logo">
-      <img src="logo 2.png" alt="AutoMech Logo" />
-      <span>AutoMech</span>
-    </div>
-
-    <div class="menu-toggle" id="menuToggle">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
-    <ul id="navMenu">
+    <div class="logo">AutoMech</div>
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <ul id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="about.html">About Us</a></li>
@@ -247,22 +208,18 @@
     </ul>
   </nav>
 
-  <!-- ===== Pricing Section ===== -->
   <section class="pricing-section">
     <h2>Service Pricing</h2>
     <div class="service-title" id="serviceTitle">Select a service to view pricing</div>
-
-    <div class="table-wrapper">
-      <table class="brand-table" id="brandTable" style="display:none;">
-        <thead>
-          <tr>
-            <th>Car Brand</th>
-            <th>Price (₵)</th>
-          </tr>
-        </thead>
-        <tbody id="brandBody"></tbody>
-      </table>
-    </div>
+    <table class="brand-table" id="brandTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Car Brand</th>
+          <th>Price (₵)</th>
+        </tr>
+      </thead>
+      <tbody id="brandBody"></tbody>
+    </table>
 
     <button class="book-now-btn" onclick="window.location='book.html'">Book Appointment</button>
   </section>
@@ -276,158 +233,44 @@
   </footer>
 
   <script>
-    // ===== Brand Pricing Data =====
-    const brandPricing = {
-      "Oil Change": {
-        "Toyota": "₵300",
-        "Honda": "₵320",
-        "Mercedes-Benz": "₵700",
-        "Audi": "₵650",
-        "BMW": "₵680",
-        "Hyundai": "₵280",
-        "Kia": "₵290",
-        "Nissan": "₵310",
-        "Ford": "₵350",
-        "Volkswagen": "₵600"
-      },
-      "Brake Service": {
-        "Toyota": "₵700",
-        "Honda": "₵750",
-        "Mercedes-Benz": "₵1,500",
-        "Audi": "₵1,400",
-        "BMW": "₵1,450",
-        "Hyundai": "₵650",
-        "Kia": "₵670",
-        "Nissan": "₵690",
-        "Ford": "₵750",
-        "Volkswagen": "₵1,200"
-      },
-      "Tire Services": {
-        "Toyota": "₵500 per tire",
-        "Honda": "₵520 per tire",
-        "Mercedes-Benz": "₵1,000 per tire",
-        "Audi": "₵950 per tire",
-        "BMW": "₵980 per tire",
-        "Hyundai": "₵430 per tire",
-        "Kia": "₵450 per tire",
-        "Nissan": "₵470 per tire",
-        "Ford": "₵520 per tire",
-        "Volkswagen": "₵800 per tire"
-      },
-      "Engine Diagnostics": {
-        "Toyota": "₵250",
-        "Honda": "₵270",
-        "Mercedes-Benz": "₵550",
-        "Audi": "₵500",
-        "BMW": "₵520",
-        "Hyundai": "₵230",
-        "Kia": "₵240",
-        "Nissan": "₵260",
-        "Ford": "₵280",
-        "Volkswagen": "₵450"
-      },
-      "Battery Replacement": {
-        "Toyota": "₵600",
-        "Honda": "₵620",
-        "Mercedes-Benz": "₵1,200",
-        "Audi": "₵1,100",
-        "BMW": "₵1,150",
-        "Hyundai": "₵550",
-        "Kia": "₵570",
-        "Nissan": "₵590",
-        "Ford": "₵620",
-        "Volkswagen": "₵1,000"
-      },
-      "Air Conditioning": {
-        "Toyota": "₵700",
-        "Honda": "₵750",
-        "Mercedes-Benz": "₵1,500",
-        "Audi": "₵1,400",
-        "BMW": "₵1,450",
-        "Hyundai": "₵650",
-        "Kia": "₵670",
-        "Nissan": "₵690",
-        "Ford": "₵750",
-        "Volkswagen": "₵1,200"
-      },
-      "Suspension and Alignment": {
-        "Toyota": "₵900",
-        "Honda": "₵950",
-        "Mercedes-Benz": "₵1,800",
-        "Audi": "₵1,700",
-        "BMW": "₵1,750",
-        "Hyundai": "₵850",
-        "Kia": "₵870",
-        "Nissan": "₵890",
-        "Ford": "₵950",
-        "Volkswagen": "₵1,500"
-      },
-      "Transmission Service": {
-        "Toyota": "₵1,200",
-        "Honda": "₵1,250",
-        "Mercedes-Benz": "₵2,500",
-        "Audi": "₵2,300",
-        "BMW": "₵2,450",
-        "Hyundai": "₵1,150",
-        "Kia": "₵1,170",
-        "Nissan": "₵1,190",
-        "Ford": "₵1,250",
-        "Volkswagen": "₵2,000"
-      },
-      "Car Repair and Maintenance": {
-        "Toyota": "₵1,200",
-        "Honda": "₵1,300",
-        "Mercedes-Benz": "₵2,800",
-        "Audi": "₵2,500",
-        "BMW": "₵2,600",
-        "Hyundai": "₵1,000",
-        "Kia": "₵1,050",
-        "Nissan": "₵1,100",
-        "Ford": "₵1,300",
-        "Volkswagen": "₵2,000"
-      }
-    };
-
-    // ===== Get service from URL =====
-    function getServiceFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      return params.get("service");
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
     }
 
-    // ===== Display Brand Pricing =====
-    function showBrandPricing(service) {
-      const title = document.getElementById("serviceTitle");
-      const brandTable = document.getElementById("brandTable");
-      const brandBody = document.getElementById("brandBody");
+    const brandPricing = {
+      "Oil Change": { "Toyota": "₵300", "Honda": "₵320", "BMW": "₵680" },
+      "Brake Service": { "Toyota": "₵700", "Honda": "₵750", "BMW": "₵1,450" },
+      "Tire Services": { "Toyota": "₵500", "Honda": "₵520", "BMW": "₵980" }
+    };
 
+    function getServiceFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('service');
+    }
+
+    function showBrandPricing(service) {
+      const title = document.getElementById('serviceTitle');
+      const brandTable = document.getElementById('brandTable');
+      const brandBody = document.getElementById('brandBody');
       if (service && brandPricing[service]) {
-        title.textContent = service + " Pricing by Car Brand";
-        brandTable.style.display = "";
-        brandBody.innerHTML = "";
+        title.textContent = service + ' Pricing by Car Brand';
+        brandTable.style.display = '';
+        brandBody.innerHTML = '';
         const prices = brandPricing[service];
         for (const brand in prices) {
-          const row = document.createElement("tr");
+          const row = document.createElement('tr');
           row.innerHTML = `<td>${brand}</td><td>${prices[brand]}</td>`;
           brandBody.appendChild(row);
         }
       } else {
-        title.textContent = "Select a service to view pricing";
-        brandTable.style.display = "none";
+        title.textContent = 'Select a service to view pricing';
+        brandTable.style.display = 'none';
       }
     }
 
-    // ===== On Load =====
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener('DOMContentLoaded', function() {
       const service = getServiceFromURL();
       showBrandPricing(service);
-    });
-
-    // ===== Mobile Menu Toggle =====
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.getElementById("navMenu");
-
-    menuToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
     });
   </script>
 </body>
