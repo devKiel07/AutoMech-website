@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - AutoMech</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* 🔸 Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #080808;
+      padding: 0.6rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #f76b1c;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar img {
+      height: 55px;
+      margin-right: 10px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.3rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #f9f9f9;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding: 0.4rem 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar ul li a:hover {
+      color: #f76b1c;
+    }
+
+    .navbar ul li.book-btn a {
+      background: #f76b1c;
+      color: #fff !important;
+      border-radius: 0.4rem;
+      border: 2px solid #f76b1c;
+      font-weight: bold;
+      padding: 0.4rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .navbar ul li.book-btn a:hover {
+      background: #fff;
+      color: #f76b1c !important;
+    }
+
+    /* 🔸 Contact Section */
+    .contact-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      background: #222;
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .contact-info {
+      flex: 1 1 350px;
+    }
+
+    .contact-info h2 {
+      color: #f76b1c;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .contact-info p {
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info .info-item {
+      margin-bottom: 1rem;
+    }
+
+    .contact-info .info-item strong {
+      color: #f76b1c;
+    }
+
+    .contact-form {
+      flex: 1 1 400px;
+    }
+
+    .contact-form h3 {
+      color: #f76b1c;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: none;
+      border-radius: 0.4rem;
+      background: #333;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      background: #f76b1c;
+      color: #fff;
+      border: none;
+      padding: 0.9rem;
+      font-size: 1rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .contact-form button:hover {
+      background: #fff;
+      color: #f76b1c;
+      transform: translateY(-2px);
+    }
+
+    /* 🔸 Footer */
+    .footer {
+      background: #080808;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 0 1rem 0;
+      margin-top: 3rem;
+    }
+
+    .footer-content p {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+    }
+
+    /* 🔸 Responsive */
+    @media (max-width: 800px) {
+      .contact-section {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      .contact-info, .contact-form {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo 2.png" alt="AutoMech Logo" />
+      <span>AutoMech</span>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="book-btn"><a href="book.html">Book</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-info">
+      <h2>Contact Us</h2>
+      <p>We’d love to hear from you! Whether it’s an inquiry, feedback, or service request, our team is ready to assist you promptly.</p>
+
+      <div class="info-item"><strong>Email:</strong> infoAutoMech@gmail.com</div>
+      <div class="info-item"><strong>Phone:</strong> +233 55 391 6228</div>
+      <div class="info-item"><strong>Location:</strong> Kokompe Darkuman, Kanto Street</div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <form id="contactForm">
+        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+        <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 AutoMech. All rights reserved.</p>
+      <p>Contact: infoAutoMech@gmail.com | Phone: +233 55 391 6228</p>
+      <p>Location: Kokompe Darkuman, Kanto Street</p>
+    </div>
+  </footer>
+
+  <!-- EmailJS integration -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("tdG6auzNc-iNhPhRI"); // Replace with your EmailJS Public Key
+    })();
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Send message via EmailJS
+      emailjs.send("service_5ks8qwf", "template_rijwftw", {
+        from_name: document.getElementById("name").value,
+        from_email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value,
+      })
+      .then(() => {
+        // Redirect to thank-you page on success
+        window.location.href = "thankyou.html";
+      })
+      .catch(() => {
+        alert("Failed to send message. Please try again.");
+      });
+    });
+  </script>
+</body>
+</html>

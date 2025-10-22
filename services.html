@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services - AutoMech</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #080808;
+      padding: 0.6rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #f76b1c;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo span {
+      color: #f76b1c;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .navbar img {
+      height: 55px;
+      margin-right: 10px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.3rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #f9f9f9;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding: 0.4rem 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar ul li a:hover {
+      color: #f76b1c;
+    }
+
+    .navbar ul li.book-btn a {
+      background: #f76b1c;
+      color: #fff !important;
+      border-radius: 0.4rem;
+      border: 2px solid #f76b1c;
+      box-shadow: 0 2px 8px rgba(247, 107, 28, 0.15);
+      font-weight: bold;
+      padding: 0.4rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .navbar ul li.book-btn a:hover {
+      background: #fff;
+      color: #f76b1c !important;
+    }
+
+    /* Services section */
+    .services-section {
+      padding: 3rem 5vw;
+    }
+
+    .services-title {
+      font-size: 2.5rem;
+      color: #f76b1c;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .service-card {
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+   
+
+    .service-card img {
+      width: 100%;
+      max-width: 200px;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .service-card h3 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      color: #e0e0e0;
+      font-size: 1rem;
+    }
+
+    .book-now-btn {
+      margin-top: 1rem;
+      background: #f76b1c;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .book-now-btn:hover {
+        background: #863302;
+    }
+
+    /* 🎨 Unique background colors per service */
+    .service-card.repair { background: #1b1b1b; }
+    .service-card.brake { background: #1c1c1c; }
+    .service-card.oil { background:  #1c1c1c; }
+    .service-card.brake { background: #1c1c1c; }
+    .service-card.tire { background: #131313; }
+    .service-card.engine { background: #191919; }
+    .service-card.battery { background: #181818; }
+    .service-card.transmission { background: #141414; }
+    .service-card.suspension { background: #101010; }
+    .service-card.air { background: #151515; }
+
+    .footer {
+      background: #080808;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 0 1rem 0;
+      margin-top: 3rem;
+    }
+
+    .footer-content p {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo 2.png" alt="AutoMech Logo" />
+      <span>AutoMech</span>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="book-btn"><a href="book.html">Book</a></li>
+    </ul>
+  </nav>
+
+  <section class="services-section">
+    <div class="services-title">Our Services</div>
+    <div class="services-grid">
+
+      <div class="service-card repair">
+        <img src="car repairs.png" alt="Car Repair and Maintenance" />
+        <h3>Car Repair and Maintenance</h3>
+        <p>Expert repair services and maintenance for all car models and brands.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Car%20Repair%20and%20Maintenance'">View Pricing</button>
+      </div>
+
+      <div class="service-card oil">
+        <img src="oil change.png" alt="Oil Change" />
+        <h3>Oil Change</h3>
+        <p>Engine oil and filter replacement for smooth performance.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Oil%20Change'">View Pricing</button>
+      </div>
+
+      <div class="service-card brake">
+        <img src="brake.png" alt="Brake Service" />
+        <h3>Brake Service</h3>
+        <p>Pad replacement, rotor check, and brake fluid inspection.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Brake%20Service'">View Pricing</button>
+      </div>
+
+      <div class="service-card tire">
+        <img src="tire service.png" alt="Tire Services" />
+        <h3>Tire Services</h3>
+        <p>Rotation, balancing, and replacement for safer rides.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Tire%20Services'">View Pricing</button>
+      </div>
+
+      <div class="service-card engine">
+        <img src="engine check.png" alt="Engine Diagnostics" />
+        <h3>Engine Diagnostics</h3>
+        <p>Advanced computer scans to detect and fix engine issues early.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Engine%20Diagnostics'">View Pricing</button>
+      </div>
+
+      <div class="service-card battery">
+        <img src="battery change.png" alt="Battery Replacement" />
+        <h3>Battery Replacement</h3>
+        <p>New, reliable batteries with professional installation.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Battery%20Replacement'">View Pricing</button>
+      </div>
+
+      <div class="service-card transmission">
+        <img src="transmission.png" alt="Transmission Service" />
+        <h3>Transmission Service</h3>
+        <p>Inspect, flush, and maintain your vehicle’s gear system for optimal performance.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Transmission%20Service'">View Pricing</button>
+      </div>
+
+      <div class="service-card suspension">
+        <img src="sus and alignment.png" alt="Suspension and Alignment" />
+        <h3>Suspension & Alignment</h3>
+        <p>Check and adjust wheel alignment and suspension system for smooth handling.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Suspension%20and%20Alignment'">View Pricing</button>
+      </div>
+
+      <div class="service-card air">
+        <img src="air conditioning .png" alt="Air Conditioning" />
+        <h3>Air Conditioning</h3>
+        <p>Check for leaks, recharge refrigerant, and ensure cool, clean airflow.</p>
+        <button class="book-now-btn" onclick="window.location='Pricing.html?service=Air%20Conditioning'">View Pricing</button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 AutoMech. All rights reserved.</p>
+      <p>Contact: infoAutoMech@gmail.com | Phone: +233 20 123 4567</p>
+      <p>Location: Kokompe Darkuman, Kanto Street</p>
+    </div>
+  </footer>
+</body>
+</html>
