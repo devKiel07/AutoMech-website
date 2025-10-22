@@ -5,11 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Service Pricing - AutoMech</title>
   <style>
+    :root {
+      --bg: #111;
+      --nav: #080808;
+      --accent: #f76b1c;
+      --white: #fff;
+    }
+
     body {
       margin: 0;
       font-family: "Poppins", Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      background: var(--bg);
+      color: var(--white);
       min-height: 100vh;
     }
 
@@ -18,8 +25,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #080808;
-      padding: 0.6rem 1.5rem;
+      background: rgba(8, 8, 8, 0.9);
+      padding: 0.6rem 1.2rem;
       position: fixed;
       top: 0;
       left: 0;
@@ -27,22 +34,16 @@
       z-index: 10;
     }
 
-    .navbar .logo {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #f76b1c;
+    .logo {
       display: flex;
       align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      color: var(--accent);
+      font-size: 1.4rem;
     }
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .navbar ul {
+    .nav-list {
       list-style: none;
       display: flex;
       gap: 1.3rem;
@@ -50,31 +51,55 @@
       padding: 0;
     }
 
-    .navbar ul li a {
+    .nav-list li a {
       text-decoration: none;
       color: #f9f9f9;
       font-weight: 500;
       transition: color 0.2s;
       padding: 0.4rem 1rem;
+      display: flex;
+      align-items: center;
     }
 
-    .navbar ul li a:hover {
-      color: #f76b1c;
+    .nav-list li a:hover {
+      color: var(--accent);
     }
 
-    .navbar ul li.book-btn a {
-      background: #f76b1c;
-      color: #fff !important;
+    .book-btn a {
+      background: var(--accent);
+      color: var(--white) !important;
       border-radius: 0.4rem;
-      border: 2px solid #f76b1c;
+      border: 2px solid var(--accent);
       font-weight: bold;
       padding: 0.4rem 1rem;
       transition: background 0.2s, color 0.2s;
     }
 
-    .navbar ul li.book-btn a:hover {
+    .book-btn a:hover {
       background: #fff;
-      color: #f76b1c !important;
+      color: var(--accent) !important;
+    }
+
+    /* ===== Menu Toggle (Mobile) ===== */
+    .menu-toggle {
+      display: none;
+      font-size: 1.9rem;
+      color: var(--white);
+      cursor: pointer;
+      background: none;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+      appearance: none;
+    }
+
+    .menu-toggle:focus,
+    .menu-toggle:active {
+      outline: none;
+      background: none;
+      box-shadow: none;
     }
 
     /* ===== Pricing Section ===== */
@@ -88,7 +113,7 @@
     }
 
     .pricing-section h2 {
-      color: #f76b1c;
+      color: var(--accent);
       margin-bottom: 1.5rem;
       text-align: center;
     }
@@ -114,7 +139,7 @@
 
     .brand-table th {
       background: #333;
-      color: #f76b1c;
+      color: var(--accent);
     }
 
     .brand-table td {
@@ -123,12 +148,12 @@
 
     .book-now-btn {
       display: block;
-      background: #f76b1c;
-      color: #fff;
-      padding: 0.7rem 1.5rem;
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.7rem 1.2rem;
       border: none;
       border-radius: 0.3rem;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: bold;
       text-align: center;
       margin: 1rem auto 0;
@@ -138,10 +163,11 @@
 
     .book-now-btn:hover {
       background: #fff;
-      color: #f76b1c;
+      color: var(--accent);
       transform: translateY(-2px);
     }
 
+    /* ===== Footer ===== */
     .footer {
       background: #080808;
       color: #fff;
@@ -161,45 +187,66 @@
         display: block;
       }
 
-      .navbar ul {
-        flex-direction: column;
+      .nav-list {
         position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: #080808;
+        top: 64px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 78%;
+        max-width: 360px;
+        background: var(--nav);
+        border-radius: 10px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
         display: none;
-        padding: 1rem 0;
+        padding: 12px 0;
       }
 
-      .navbar ul.show {
+      .nav-list.show {
         display: flex;
       }
 
-      .navbar ul li a {
+      .nav-list li {
         width: 100%;
-        justify-content: flex-start;
-        padding: 0.8rem 1rem;
+        margin: 6px 0;
+        display: flex;
+        justify-content: center;
       }
 
-      .navbar ul li.book-btn a {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.9rem;
+      .nav-list a {
+        display: inline-block;
+        width: auto;
+        text-align: center;
+        font-size: 1rem;
+        border-radius: 6px;
+      }
+
+      .book-btn a {
+        min-width: 110px;
+        padding: 6px 10px;
+        font-size: 0.88rem;
+        border-radius: 6px;
+        text-align: center;
       }
 
       .pricing-section {
         width: 90%;
-        padding: 1rem;
+        padding: 1.2rem;
         margin-top: 6rem;
       }
     }
   </style>
 </head>
 <body>
+  <!-- ===== Navbar ===== -->
   <nav class="navbar">
     <div class="logo">AutoMech</div>
-    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
-    <ul id="navLinks">
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+    <ul id="navLinks" class="nav-list">
       <li><a href="index.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="about.html">About Us</a></li>
@@ -208,9 +255,11 @@
     </ul>
   </nav>
 
+  <!-- ===== Pricing Section ===== -->
   <section class="pricing-section">
     <h2>Service Pricing</h2>
     <div class="service-title" id="serviceTitle">Select a service to view pricing</div>
+
     <table class="brand-table" id="brandTable" style="display:none;">
       <thead>
         <tr>
@@ -224,6 +273,7 @@
     <button class="book-now-btn" onclick="window.location='book.html'">Book Appointment</button>
   </section>
 
+  <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2025 AutoMech. All rights reserved.</p>
@@ -232,11 +282,17 @@
     </div>
   </footer>
 
+  <!-- ===== Script ===== -->
   <script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("show");
-    }
+    // Toggle Menu
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const show = nav.classList.toggle('show');
+      toggle.setAttribute('aria-expanded', show ? 'true' : 'false');
+    });
 
+    // Pricing Logic
     const brandPricing = {
       "Oil Change": { "Toyota": "₵300", "Honda": "₵320", "BMW": "₵680" },
       "Brake Service": { "Toyota": "₵700", "Honda": "₵750", "BMW": "₵1,450" },
